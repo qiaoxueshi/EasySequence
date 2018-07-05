@@ -1,6 +1,13 @@
 
 # Change Log
 
+## 1.2.0
+
+- Fix crash while enumerating a sequence.
+- Add EZS_performSelector, EZS_mapWithSelector useful blocks.
+- Add removeAllObjects method for EZSArray and EZSOrderedSet.
+- Add concat, flatten, zip method for EZSequences.
+
 ## 1.1.0 
 
 - Add Generic support for EZSWeakArray, EZSWeakOrderedSet.

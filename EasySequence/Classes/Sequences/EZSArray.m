@@ -96,6 +96,11 @@
     }
 }
 
+- (void)removeAllObjects {
+    EZS_SCOPELOCK(_arrayLock);
+    [_array removeAllObjects];
+}
+
 #pragma mark - replace methods
 
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)anObject {
@@ -112,7 +117,7 @@
 #pragma mark - NSFastEnumeration Protocol
 
 - (NSUInteger)countByEnumeratingWithState:(nonnull NSFastEnumerationState *)state objects:(id  _Nullable __unsafe_unretained * _Nonnull)buffer count:(NSUInteger)len {
-    NSArray *array = ({
+    __autoreleasing NSArray *array = ({
         EZS_SCOPELOCK(_arrayLock);
         [_array copy];
     });

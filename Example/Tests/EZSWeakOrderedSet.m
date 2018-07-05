@@ -249,6 +249,17 @@ describe(@"EZSWeakOrderedSet", ^{
             expect(set.allObjects).to(equal(resultArray));
         });
         
+        it(@"can remove all objects", ^{
+            NSArray *array = @[@"1", @"2", @"3", @"4"];
+            EZSWeakOrderedSet *set = [[EZSWeakOrderedSet alloc] initWithNSArray:array];
+            expect(set.count).to(equal(4));
+            expect(set).to(equal([NSOrderedSet orderedSetWithArray:array]));
+        
+            [set removeAllObjects];
+            expect(set.count).to(equal(0));
+            expect(set).to(equal([NSOrderedSet orderedSet]));
+        });
+        
         it(@"can replace the object at the index with the new object", ^{
             NSArray *array = @[@"1", @"2", @"3", @"4"];
             EZSWeakOrderedSet *set = [[EZSWeakOrderedSet alloc] initWithNSArray:array];

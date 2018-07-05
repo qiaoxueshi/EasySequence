@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeLastObject;
 - (void)removeFirstObject;
 - (void)removeObject:(T)anObject;
-
+- (void)removeAllObjects;
 /**
  Removes the object at index .
 

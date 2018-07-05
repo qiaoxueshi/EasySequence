@@ -7,6 +7,12 @@
 
 #import "EZSUsefulBlocks.h"
 
+EZSMapBlock EZS_ID(void) {
+    return ^id(id _) {
+        return _;
+    };
+}
+
 EZSFliterBlock EZS_isKindOf_(Class klass) {
     return ^BOOL(id instance) {
         return [instance isKindOfClass:klass];
@@ -43,3 +49,44 @@ EZSMapBlock EZS_valueWithKey(NSString *keyName) {
         return dictionary[keyName];
     };
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
+EZSApplyBlock EZS_performSelector(SEL selector) {
+    return ^(id object) {
+        [object performSelector:selector];
+    };
+}
+
+EZSApplyBlock EZS_performSelector1(SEL selector, id param1) {
+    return ^(id object) {
+        [object performSelector:selector withObject:param1];
+    };
+}
+
+EZSApplyBlock EZS_performSelector2(SEL selector, id param1, id param2) {
+    return ^(id object) {
+        [object performSelector:selector withObject:param1 withObject:param2];
+    };
+}
+
+EZSMapBlock EZS_mapWithSelector(SEL selector) {
+    return ^id(id object) {
+        return [object performSelector:selector];
+    };
+}
+
+EZSMapBlock EZS_mapWithSelector1(SEL selector, id param1) {
+    return ^id(id object) {
+        return [object performSelector:selector withObject:param1];
+    };
+}
+
+EZSMapBlock EZS_mapWithSelector2(SEL selector, id param1, id param2) {
+    return ^id(id object) {
+        return [object performSelector:selector withObject:param1 withObject:param2];
+    };
+}
+
+#pragma clang diagnostic pop

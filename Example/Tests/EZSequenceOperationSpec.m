@@ -126,6 +126,16 @@ describe(@"EZSequence Operations", ^{
         expect(flattenedSequence).to(equal(@[@1, @2, @2, @4]));
     });
     
+    it(@"can flatten a highOrder sequence to an normal sequence", ^{
+        EZSequence<id<NSFastEnumeration>> *sequence =  EZS_Sequence(@[@[@1, @2], @[@3, @4]]);
+        EZSequence<NSNumber *> *flattenedSequence = [sequence flatten];
+        expect(flattenedSequence).to(equal(@[@1, @2, @3, @4]));
+        
+        EZSequence *sequence2 = EZS_Sequence(@[@1, @2, @[@3, @4]]);
+        flattenedSequence = [sequence2 flatten];
+        expect(flattenedSequence).to(equal(@[@1, @2, @3, @4]));
+    });
+    
     it(@"should raise exception while flattenMapBlock result is not conforms to NSFastEnumeration", ^{
         EZSequence<NSNumber *> *sequence = [@[@1, @2] EZS_asSequence];
         expectAction(^(){
@@ -133,7 +143,20 @@ describe(@"EZSequence Operations", ^{
                 return (id<NSFastEnumeration>)[NSObject new];
             }];
         }).to(raiseException().named(EZSequenceExceptionName).reason(EZSequenceExceptionReason_ResultOfFlattenMapBlockMustConformsNSFastEnumeation));
-        
+    });
+    
+    it(@"can concat with another sequence", ^{
+        EZSequence *a = EZS_Sequence(@[@1, @2, @3]);
+        EZSequence *result = [a concat:@[@"4", @"5"]];
+        expect(result).to(equal(@[@1, @2, @3, @"4", @"5"]));
+    });
+    
+    it(@"can concat with another sequence", ^{
+        NSArray *a = @[@1, @2, @3];
+        NSArray *b = @[@"4", @"5"];
+        NSArray *c = @[@"A", @"B", @"C"];
+        EZSequence *result = [EZSequence concat:@[a, b, c]];
+        expect(result).to(equal(@[@1, @2, @3, @"4", @"5", @"A", @"B", @"C"]));
     });
     
     context(@"reduce", ^{
@@ -221,12 +244,14 @@ describe(@"EZSequence Operations", ^{
             NSArray *a = @[@1, @2, @3];
             NSArray *b = @[@"a", @"b", @"c"];
             expect([EZSequence zip:@[a, b]]).to(equal(@[@[@1, @"a"], @[@2, @"b"], @[@3, @"c"]]));
+            expect([EZS_Sequence(a) zip:b]).to(equal(@[@[@1, @"a"], @[@2, @"b"], @[@3, @"c"]]));
         });
         
         it(@"can use zip to zip some arrays, and support different count", ^{
             NSArray *a = @[@1, @2, @3];
             NSArray *b = @[@"a", @"b"];
             expect([EZSequence zip:@[a, b]]).to(equal(@[@[@1, @"a"], @[@2, @"b"]]));
+            expect([EZS_Sequence(a) zip:b]).to(equal(@[@[@1, @"a"], @[@2, @"b"]]));
         });
         
         it(@"should raise exception when use in non-sequence of sequence", ^{
@@ -234,6 +259,9 @@ describe(@"EZSequence Operations", ^{
             NSString *b = @"b";
             expectAction((^(){
                 __attribute__((unused)) EZSequence *zipedSequence = [EZSequence zip:@[a, b]];
+            })).to(raiseException().named(EZSequenceExceptionName).reason(EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOfNSFastEnumeration));
+            expectAction((^(){
+                __attribute__((unused)) EZSequence *zipedSequence = [EZS_Sequence(a) zip:(id<NSFastEnumeration>)b];
             })).to(raiseException().named(EZSequenceExceptionName).reason(EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOfNSFastEnumeration));
         });
     });

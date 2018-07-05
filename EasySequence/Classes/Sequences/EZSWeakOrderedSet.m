@@ -65,7 +65,8 @@
 #pragma mark - NSFastEnumeration Protocol
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id  _Nullable __unsafe_unretained [])buffer count:(NSUInteger)len {
-    return [self.allObjects countByEnumeratingWithState:state objects:buffer count:len];
+    __autoreleasing NSArray *array = self.allObjects;
+    return [array countByEnumeratingWithState:state objects:buffer count:len];
 }
 
 #pragma mark - NSCopying Protocol

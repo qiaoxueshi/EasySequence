@@ -8,6 +8,12 @@
 #import <Foundation/Foundation.h>
 #import <EasySequence/EZSBlockDefines.h>
 
+/**
+ 返回一个 直接返回参数的mapBlock
+
+ @return MapBlock
+ */
+EZSMapBlock EZS_ID(void);
 
 /**
  通过isKindOf判断，返回一个`EZSFliterBlock`。
@@ -66,4 +72,56 @@ EZSMapBlock EZS_propertyWith(NSString *propertyName);
  */
 EZSMapBlock EZS_valueWithKey(NSString *keyName);
 
+/**
+ 遍历每一个元素，并执行元素的`selector`。
 
+ @param selector 要对元素执行的selector
+ @return 一个EZSApplyBlock，该block没有返回值
+ */
+EZSApplyBlock EZS_performSelector(SEL selector);
+
+/**
+ 遍历每一个元素，并执行元素的`selector`。
+ 
+ @param selector 要对元素执行的selector
+ @param param1 第一个参数
+ @return 一个EZSApplyBlock，该block没有返回值
+ */
+EZSApplyBlock EZS_performSelector1(SEL selector, id param1);
+
+/**
+ 遍历每一个元素，并执行元素的`selector`。
+ 
+ @param selector 要对元素执行的selector
+ @param param1 第一个参数
+ @param param2 第二个参数
+ @return 一个EZSApplyBlock，该block没有返回值
+ */
+EZSApplyBlock EZS_performSelector2(SEL selector, id param1, id param2);
+
+/**
+ 将一个`EZSMapBlock`中的入参映射为 元素执行selector之后的结果。
+
+ @param selector 要对元素执行的selector
+ @return 一个EZSMapBlock
+ */
+EZSMapBlock EZS_mapWithSelector(SEL selector);
+
+/**
+ 将一个`EZSMapBlock`中的入参映射为 元素执行selector之后的结果。
+ 
+ @param selector 要对元素执行的selector
+ @param param1 第一个参数
+ @return 一个EZSMapBlock
+ */
+EZSMapBlock EZS_mapWithSelector1(SEL selector, id param1);
+
+/**
+ 将一个`EZSMapBlock`中的入参映射为 元素执行selector之后的结果。
+ 
+ @param selector 要对元素执行的selector
+ @param param1 第一个参数
+ @param param2 第二个参数
+ @return 一个EZSMapBlock
+ */
+EZSMapBlock EZS_mapWithSelector2(SEL selector, id param1, id param2);

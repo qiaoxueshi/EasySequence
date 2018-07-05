@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'EasySequence'
-  s.version          = '1.1.0'
+  s.version          = '1.2.0'
   s.summary          = 'a powerful fundamental library to process sequcence type.'
 
   s.description      = <<-DESC

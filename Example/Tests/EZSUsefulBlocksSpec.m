@@ -108,6 +108,62 @@ describe(@"EZSUsefulBlocks test", ^{
                 EZSequence<NSString *> *result __attribute__((unused))= [EZS_Sequence(array) map:mapNameBlock];
             }).to(hasAssert());
         });
+        
+        it(@"can map item to the result that item execute the selector", ^{
+            EZSequence *seq = [@[@"a", @"b", @"c"] EZS_asSequence];
+            EZSequence *mappedSeq = [seq map:EZS_mapWithSelector(@selector(uppercaseString))];
+            expect(mappedSeq).to(equal(@[@"A", @"B", @"C"]));
+        });
+        
+        it(@"can map item to the result that item execute the selector with one argument", ^{
+            EZSequence *seq = [@[@"1", @"22", @"333", @"4444"] EZS_asSequence];
+            EZSequence *mappedSeq = [seq map:EZS_mapWithSelector1(@selector(stringByAppendingString:), @"a")];
+            expect(mappedSeq).to(equal(@[@"1a", @"22a", @"333a", @"4444a"]));
+        });
+
+        it(@"can map item to the result that item execute the selector with two arguments", ^{
+            EZSequence *seq = [@[@"1a", @"22a", @"333a", @"4444a"] EZS_asSequence];
+            EZSequence *mappedSeq = [seq map:EZS_mapWithSelector2(@selector(stringByReplacingOccurrencesOfString:withString:), @"a", @"b")];
+            expect(mappedSeq).to(equal(@[@"1b", @"22b", @"333b", @"4444b"]));
+        });
+    });
+    
+    context(@"perform useful blocks", ^{
+        it(@"can perform a selector", ^{
+            UIView *container = [[UIView alloc] initWithFrame:CGRectZero];
+            UIView *view1 = [[UIView alloc] initWithFrame:CGRectZero];
+            UIView *view2 = [[UIView alloc] initWithFrame:CGRectZero];
+            UIView *view3 = [[UIView alloc] initWithFrame:CGRectZero];
+            [container addSubview:view1];
+            [container addSubview:view2];
+            [container addSubview:view3];
+            EZSequence *seq = [container.subviews EZS_asSequence];
+            expect(container.subviews.count).to(equal(3));
+            [seq forEach:EZS_performSelector(@selector(removeFromSuperview))];
+            expect(container.subviews.count).to(equal(0));
+        });
+        
+        it(@"can perform a selector with one argument", ^{
+            UIView *view1 = [[UIView alloc] initWithFrame:CGRectZero];
+            UIView *view2 = [[UIView alloc] initWithFrame:CGRectZero];
+            UIView *view3 = [[UIView alloc] initWithFrame:CGRectZero];
+            EZSequence *seq = [@[view1, view2, view3] EZS_asSequence];
+            [seq forEach:EZS_performSelector1(@selector(setBackgroundColor:), [UIColor redColor])];
+            expect(view1.backgroundColor).to(equal([UIColor redColor]));
+            expect(view2.backgroundColor).to(equal([UIColor redColor]));
+            expect(view3.backgroundColor).to(equal([UIColor redColor]));
+        });
+
+        it(@"can perform a selector with two arguments", ^{
+            NSMutableDictionary *dict1 = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"value1", @"key1", @"valueA", @"keyA", nil];
+            NSMutableDictionary *dict2 = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"value2", @"key1", @"valueB", @"keyB", nil];
+            NSMutableDictionary *dict3 = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"value3", @"key1", @"valueC", @"keyC", nil];
+            EZSequence *seq = [@[dict1, dict2, dict3] EZS_asSequence];
+            [seq forEach:EZS_performSelector2(@selector(setObject:forKey:), @"newValue", @"key1")];
+            expect([dict1 objectForKey:@"key1"]).to(equal(@"newValue"));
+            expect([dict2 objectForKey:@"key1"]).to(equal(@"newValue"));
+            expect([dict3 objectForKey:@"key1"]).to(equal(@"newValue"));
+        });
     });
 });
 

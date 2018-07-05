@@ -144,6 +144,17 @@ describe(@"EZSOrderedSet", ^{
             expect([set objectAtIndex:2]).to(equal(@"4"));
         });
         
+        it(@"can remove all objects", ^{
+            NSArray *array = @[@"1", @"2", @"3", @"4"];
+            EZSOrderedSet *set = [[EZSOrderedSet alloc] initWithNSArray:array];
+            expect(set.count).to(equal(4));
+            expect(set).to(equal([NSOrderedSet orderedSetWithObjects:@"1", @"2", @"3", @"4", nil]));
+            
+            [set removeAllObjects];
+            expect(set.count).to(equal(0));
+            expect(set).to(equal([NSOrderedSet orderedSet]));
+        });
+        
         it(@"can replace the object at the index with the new object", ^{
             NSArray *array = @[@"1", @"2", @"3", @"4"];
             EZSOrderedSet *set = [[EZSOrderedSet alloc] initWithNSArray:array];

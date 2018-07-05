@@ -36,6 +36,13 @@ FOUNDATION_EXTERN NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnN
 - (void)forEach:(void (NS_NOESCAPE ^)(T item))eachBlock;
 
 /**
+ 将含有序列的序列降解为一维序列
+
+ @return 一个新的序列
+ */
+- (EZSequence *)flatten;
+
+/**
  flattenMap操作，返回一个新的序列。
 
  @param flattenBlock flattenMap Block
@@ -43,6 +50,21 @@ FOUNDATION_EXTERN NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnN
  */
 - (EZSequence *)flattenMap:(id<NSFastEnumeration> (NS_NOESCAPE ^)(T item))flattenBlock;
 
+/**
+ 拼接操作 将当期序列和参数传递的的序列拼接为一个序列
+
+ @param anotherSequence 另外一个序列
+ @return 一个拼接后的新序列
+ */
+- (EZSequence *)concat:(id<NSFastEnumeration>)anotherSequence;
+
+/**
+ 拼接操作 将含有序列的序列拼接为一个序列
+
+ @param sequences 实现了快速枚举协议的序列，元素必须也实现了快速枚举协议
+ @return 一个拼接后的新序列
+ */
++ (EZSequence *)concat:(id<NSFastEnumeration>)sequences;
 
 /**
  过滤操作
@@ -186,6 +208,17 @@ FOUNDATION_EXTERN NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnN
  @return 一个EZSequence实例，元素为zip配对后的EZSequence
  */
 + (EZSequence<EZSequence *> *)zip:(id<NSFastEnumeration>)sequences;
+
+/**
+ zip配对操作。操作流程为：
+ 1. `anotherSequence`是一个快速枚举协议的对象.
+ 2. 对`self` 和 `anotherSequence`的元素同时进行遍历，并把同时遍历一次所得到的全部对象封装为一个EZSequence，作为元素加入到要返回的EZSequence中
+ 3. 如果任意一个元素被遍历完成，则整个遍历结束，返回最终的EZSequence
+ 
+ @param anotherSequence 实现了快速枚举协议的序列，元素必须也实现了快速枚举协议
+ @return 一个EZSequence实例，元素为zip配对后的EZSequence
+ */
+- (EZSequence<EZSequence *> *)zip:(id<NSFastEnumeration>)anotherSequence;
 
 /**
  Groups the array by the result of the block. Returns an empty dictionary if the original array is empty.

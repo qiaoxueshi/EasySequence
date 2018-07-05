@@ -216,6 +216,28 @@ describe(@"EZSWeakArray", ^{
             expect(arr.count).to(equal(1));
         });
         
+        it(@"can remove all objects", ^{
+            EZSWeakArray *arr;
+            NSObject *strongObj3;
+            @autoreleasepool{
+                NSObject *obj1 = [NSObject new];
+                NSObject *obj2 = [NSObject new];
+                NSObject *obj3 = [NSObject new];
+                strongObj3 = obj3;
+                NSObject *obj4 = [NSObject new];
+                NSArray *array = @[obj1, obj2, strongObj3, obj4];
+                arr = [[EZSWeakArray alloc] initWithNSArray:array];
+                expect(arr.count).to(equal(4));
+                expect(arr).to(equal(@[obj1, obj2, obj3, obj4]));
+                
+                [arr removeAllObjects];
+                expect(arr.count).to(equal(0));
+                expect(arr).to(equal(@[]));
+            }
+            expect(arr.count).to(equal(0));
+            expect(arr).to(equal(@[]));
+        });
+        
         it(@"can replace the object at the index with the new object", ^{
             EZSWeakArray *arr;
             NSObject *strongObj3;

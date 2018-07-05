@@ -111,7 +111,18 @@ describe(@"EZSArray", ^{
             expect(arr.count).to(equal(3));
             expect(arr).to(equal(@[@"1", @"2", @"4"]));
         });
-
+        
+        it(@"can remove all objects", ^{
+            NSArray *array = @[@"1", @"2", @"3", @"4"];
+            EZSArray *arr = [[EZSArray alloc] initWithNSArray:array];
+            expect(arr.count).to(equal(4));
+            expect(arr).to(equal(@[@"1", @"2", @"3", @"4"]));
+            
+            [arr removeAllObjects];
+            expect(arr.count).to(equal(0));
+            expect(arr).to(equal(@[]));
+        });
+        
         it(@"can replace the object at the index with the new object", ^{
             NSArray *array = @[@"1", @"2", @"3", @"4"];
             EZSArray *arr = [[EZSArray alloc] initWithNSArray:array];

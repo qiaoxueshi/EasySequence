@@ -56,6 +56,32 @@ NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOf
     return EZS_Sequence(array);
 }
 
+- (EZSequence *)flatten {
+    NSMutableArray *array = [NSMutableArray array];
+    [self forEach:^(id  _Nonnull item) {
+        if ([item conformsToProtocol:@protocol(NSFastEnumeration)]) {
+            for (id innerItem in item) {
+                [array addObject:innerItem];
+            }
+        } else {
+            [array addObject:item];
+        }
+    }];
+    return EZS_Sequence(array);
+}
+
+- (EZSequence *)concat:(id<NSFastEnumeration>)anotherSequence {
+    NSParameterAssert(anotherSequence);
+    if (!anotherSequence) { return self; }
+    return [EZS_Sequence(@[self, anotherSequence]) flatten];
+}
+
++ (EZSequence *)concat:(id<NSFastEnumeration>)sequences {
+    NSParameterAssert(sequences);
+    if (!sequences) { return nil; }
+    return [EZS_Sequence(sequences) flatten];
+}
+
 - (EZSequence *)filter:(EZSFliterBlock)filterBlock {
     NSParameterAssert(filterBlock);
     NSMutableArray *array = [NSMutableArray new];
@@ -228,6 +254,12 @@ NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOf
         [result addObject:values];
     }
     return EZS_SequenceWithType(EZSequence *, result);
+}
+
+- (EZSequence<EZSequence *> *)zip:(id<NSFastEnumeration>)anotherSequence {
+    NSParameterAssert(anotherSequence);
+    if (!anotherSequence) { return nil; }
+    return [EZSequence zip:@[self, anotherSequence]];
 }
 
 @end

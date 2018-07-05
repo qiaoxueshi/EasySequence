@@ -87,12 +87,10 @@
 }
 
 - (void)removeObject:(id)anObject {
-    NSUInteger index = ({
-        EZS_SCOPELOCK(_arrayLock);
-        [EZS_Sequence(_array) firstIndexWhere:EZS_isEqual(anObject)];
-    });
+    EZS_SCOPELOCK(_arrayLock);
+    NSUInteger index = [EZS_Sequence(_array) firstIndexWhere:EZS_isEqual(anObject)];
     if (index != NSNotFound) {
-        [self removeObjectAtIndex:index];
+        [_array removeObjectAtIndex:index];
     }
 }
 

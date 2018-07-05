@@ -165,6 +165,21 @@ describe(@"EZSUsefulBlocks test", ^{
             expect([dict3 objectForKey:@"key1"]).to(equal(@"newValue"));
         });
     });
+    
+    context(@"instance is equalto test", ^{
+        it(@"can test two objects equality", ^{
+            NSString *s1 = @"1";
+            NSString *s2 = s1;
+            expect(EZS_instanceEqual(s1, s2)).to(beTrue());
+            expect(EZS_instanceEqual(s1, [@1 stringValue])).to(beTrue());
+            expect(EZS_instanceEqual([@1 stringValue], s2)).to(beTrue());
+            
+            expect(EZS_instanceEqual(nil, nil)).to(beTrue());
+            expect(EZS_instanceEqual(nil, s2)).notTo(beTrue());
+            expect(EZS_instanceEqual(s1, nil)).notTo(beTrue());
+        });
+        
+    });
 });
 
 QuickSpecEnd

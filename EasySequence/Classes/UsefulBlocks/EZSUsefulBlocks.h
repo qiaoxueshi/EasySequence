@@ -125,3 +125,12 @@ EZSMapBlock EZS_mapWithSelector1(SEL selector, id param1);
  @return 一个EZSMapBlock
  */
 EZSMapBlock EZS_mapWithSelector2(SEL selector, id param1, id param2);
+
+/**
+ 判断两个元素实例是否相同
+
+ @param left 需要被判断的实例
+ @param right 需要被判断的实例
+ @return 实例是否相等
+ */
+FOUNDATION_EXTERN BOOL EZS_instanceEqual(id left, id right);

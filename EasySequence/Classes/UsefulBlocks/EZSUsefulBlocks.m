@@ -90,3 +90,14 @@ EZSMapBlock EZS_mapWithSelector2(SEL selector, id param1, id param2) {
 }
 
 #pragma clang diagnostic pop
+
+BOOL EZS_instanceEqual(id left, id right) {
+    if (left == right) { return YES; }
+    if ([left respondsToSelector:@selector(isEqual:)]) {
+        return [left isEqual:right];
+    }
+    if ([right respondsToSelector:@selector(isEqual:)]) {
+        return [right isEqual:left];
+    }
+    return NO;
+}

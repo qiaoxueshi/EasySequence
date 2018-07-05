@@ -1,6 +1,11 @@
 
 # Change Log
 
+## 1.2.1
+
+- Add EZS_instanceEqual useful block.
+- Fix bug for removeObjectAtIndex: method.
+
 ## 1.2.0
 
 - Fix crash while enumerating a sequence.

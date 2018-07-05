@@ -70,7 +70,14 @@
 }
 
 - (NSArray *)toArray {
-    return [[EZS_Sequence([super toArray]) map:EZS_propertyWith(EZS_KeyPath(EZSWeakReference, reference))] as:[NSArray class]];
+    NSMutableArray *array = [NSMutableArray array];
+    for (EZSWeakReference *reference in [super toArray]) {
+        id strongItem = reference.reference;
+        if (strongItem) {
+            [array addObject:strongItem];
+        }
+    }
+    return array;
 }
 
 - (EZSWeakReference *)weakReference:(id _Nonnull)anObject {

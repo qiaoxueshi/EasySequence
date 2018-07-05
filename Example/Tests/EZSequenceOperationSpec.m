@@ -12,7 +12,6 @@ QuickSpecBegin(EZSequenceOpertaionSpec)
 describe(@"EZSequence Operations", ^{
     it(@"can map an array to a new array by invoking a block on each item", ^{
         EZSequence<NSString *> *sequence = [@[@"111", @"222", @"333"] EZS_asSequence];
-        EZS_Sequence(@[@"111", @"222", @"333"]);
         EZSequence<NSNumber *> *mappedSequence = [sequence map:^id _Nonnull(NSString * _Nonnull value) {
             return @(value.integerValue);
         }];

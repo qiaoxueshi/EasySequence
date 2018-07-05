@@ -8,6 +8,6 @@
 #import <EasySequence/EZSOrderedSet.h>
 
 __attribute__((objc_subclassing_restricted))
-@interface EZSWeakOrderedSet : EZSOrderedSet
+@interface EZSWeakOrderedSet<T> : EZSOrderedSet<T>
 
 @end

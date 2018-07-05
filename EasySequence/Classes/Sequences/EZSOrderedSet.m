@@ -18,7 +18,7 @@
 #pragma mark - init
 
 - (instancetype)init {
-    if ([self initWithNSOrderedSet:[NSOrderedSet orderedSet]]) {
+    if (self = [self initWithNSOrderedSet:[NSOrderedSet orderedSet]]) {
         
     }
     return self;
@@ -36,7 +36,7 @@
 - (instancetype)initWithNSOrderedSet:(NSOrderedSet *)set {
     NSParameterAssert(set);
     set = set ?: [NSOrderedSet orderedSet];
-    if ([super init]) {
+    if (self = [super init]) {
         _orderedSet = [[NSMutableOrderedSet alloc] initWithOrderedSet:set];
         EZS_LOCK_INIT(_orderedSetLock);
     }

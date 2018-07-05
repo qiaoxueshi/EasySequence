@@ -14,7 +14,7 @@
 
 QuickSpecBegin(EZSequenceSpec)
 
-describe(@"EZSequence behaivors", ^{
+describe(@"EZSequence behaviors", ^{
     
     context(@"Creating", ^{
         it(@"can be created by using `EZS_Sequence` or `EZS_SequenceWithType` macro.", ^{

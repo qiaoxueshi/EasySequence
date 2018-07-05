@@ -8,6 +8,6 @@
 #import <EasySequence/EZSArray.h>
 
 __attribute__((objc_subclassing_restricted))
-@interface EZSWeakArray : EZSArray
+@interface EZSWeakArray<T> : EZSArray<T>
 
 @end

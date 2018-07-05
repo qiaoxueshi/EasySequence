@@ -9,11 +9,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface EZSWeakReference<T : NSObject *> : NSObject
+@interface EZSWeakReference<T> : NSObject
 
 @property (nonatomic, readonly, weak) T reference;
 
-- (instancetype)initWithReference:(nonnull T)reference deallocBlock:(void (^_Nullable)(EZSWeakReference * _Nonnull reference))deallocBlock;
++ (instancetype)reference:(nonnull T)reference;
+- (instancetype)initWithReference:(nonnull T)reference deallocBlock:(void (^_Nullable)(EZSWeakReference * _Nonnull reference))deallocBlock NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 @end
 

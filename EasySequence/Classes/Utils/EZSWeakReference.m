@@ -37,6 +37,10 @@
     return self;
 }
 
++ (instancetype)reference:(nonnull id)reference {
+    return [[self alloc] initWithReference:reference deallocBlock:nil];
+}
+
 - (NSUInteger)hash {
     return _referenceHash;
 }
@@ -50,7 +54,7 @@
 }
 
 - (NSString *)description {
-    return _reference ? _reference.description : [super description];
+    return _reference ? [_reference description] : [super description];
 }
 
 @end

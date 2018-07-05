@@ -14,37 +14,40 @@ NS_ASSUME_NONNULL_BEGIN
 @interface EZSequence<T> : NSObject <NSFastEnumeration>
 
 /**
- 从一个实现了`NSFastEnumeration`的对象初始化出一个序列。
+ Initializes and returns a newly allocated sequence object with the specified object implented the `NSFastEnumeration` protocol.
 
- @param originSequence 实现了`NSFastEnumeration`协议的对象
- @return EZSequence实例
+ @param originSequence An object that implements the `NSFastEnumeration` protocol
+ @return An initialized EZSequence object
  */
-- (instancetype)initWithOriginSequence:(id<NSFastEnumeration>)originSequence;
+- (instancetype)initWithOriginSequence:(id<NSFastEnumeration>)originSequence NS_DESIGNATED_INITIALIZER;
 
 /**
- 对象反转，即EZSequence转换为任意实现了`EZSTransfer`协议的对象。
- 
- @param clazz 实现了`EZSTransfer`的对象的Class
- @return EZSequence实例
+ Converts EZSequence to the specified object implented the `EZSTransfer` protocol
+  
+ @param clazz An object that implements the `EZSTransfer` protocol
+ @return An initialized EZSequence object 
  */
 - (id)as:(Class<EZSTransfer>)clazz;
 
 /**
- 带有停止功能的遍历
+ Executes a given block using each object in the sequence, starting with the first object and continuing through the sequence to the last object.
  
- @param eachBlock 遍历block, 入参为：
- - item: 遍历到的元素
- - index: 遍历到的下标
- - stop: 值为YES时停止遍历
+ @param eachBlock The block to execute for each object in the sequence. The block takes three arguments:：
+ - item: The object.
+ - index: The index of the object in the sequence.
+ - stop: A reference to a Boolean value. Setting the value to YES within the block stops further enumeration of the sequence. If a block stops further enumeration, that block continues to run until it’s finished.
  */
 - (void)forEachWithIndexAndStop:(void (NS_NOESCAPE ^)(T item, NSUInteger index, BOOL *stop))eachBlock;
 
 /**
- 返回正序迭代器
+ Returns an enumerator object that lets you access each object in the sequence.
 
- @return 迭代器对象
+ @return An enumerator object that lets you access each object in the sequence, in order, from the element at the lowest index upwards.
  */
 - (NSEnumerator<T> *)objectEnumerator;
+
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 @end
 

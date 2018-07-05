@@ -9,7 +9,7 @@
 #import <EasySequence/EZSTransfer.h>
 
 /**
- 实现了`EZSTransfer`协议的NSArry，可以在NSArray和EZSequence之间转换。
+ Object can be converted between NSArray and EZSequence
  */
 @interface NSArray (EZSTransfer) <EZSTransfer>
 

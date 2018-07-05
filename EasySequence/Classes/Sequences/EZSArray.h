@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 // The number of objects in the array.
 @property (readonly) NSUInteger count;
 
-- (instancetype)init;
 - (instancetype)initWithNSArray:(NSArray<T> *)array NS_DESIGNATED_INITIALIZER;
 
 // Returns the object located at the specified index.

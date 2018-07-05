@@ -10,17 +10,20 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- `EZSEnumerator`是一个迭代器，用于遍历。
+ `EZSEnumerator` is an enumerator object that lets you access each object in the sequence
  */
 @interface EZSEnumerator : NSEnumerator
 
 /**
- 从一个实现了快读遍历协议的对象得到一个迭代器。
+ Initializes and returns a newly allocated enumerator object with the specified object implented the `NSFastEnumeration` protocol.
 
- @param fastEnumerator 实现了`NSFastEnumeration`协议的对象
- @return 迭代器实例
+ @param fastEnumerator An object that implements the `NSFastEnumeration` protocol
+ @return An initialized EZSEnumerator object
  */
-- (instancetype)initWithFastEnumerator:(id<NSFastEnumeration>)fastEnumerator;
+- (instancetype)initWithFastEnumerator:(id<NSFastEnumeration>)fastEnumerator NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 @end
 

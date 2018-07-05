@@ -1,5 +1,5 @@
 PODS:
-  - EasySequence (1.2.1)
+  - EasySequence (1.3.0)
   - Nimble (7.1.2)
   - Quick (1.3.0)
 
@@ -18,7 +18,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  EasySequence: 1cf43264a06225a55349fedc56885a8857733012
+  EasySequence: 922b902a6fd4d978c3c25f877dd230fdfc3e5778
   Nimble: 3835ba9f459daa6b347f8a8e110aaae8ca1920a8
   Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
 

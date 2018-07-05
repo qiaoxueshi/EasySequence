@@ -12,10 +12,9 @@
 @interface NSObject (EZSequence)
 
 /**
- 从对象得到一个EZSequence实例。
- Note: 对象必须实现`NSFastEnumeration`协议
+ Get An EZSequence object. Needs to implement `NSFastEnumeration` protocol first
 
- @return 一个EZSequence实例
+ @return An initialized EZSequence object
  */
 - (EZSequence *)EZS_asSequence;
 

@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (readonly) NSUInteger count;
 
-- (instancetype)init;
 - (instancetype)initWithNSArray:(NSArray<T> *)array;
 - (instancetype)initWithNSOrderedSet:(NSOrderedSet<T> *)set NS_DESIGNATED_INITIALIZER;
 

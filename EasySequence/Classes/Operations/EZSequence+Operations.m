@@ -76,7 +76,7 @@ NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOf
     return [EZS_Sequence(@[self, anotherSequence]) flatten];
 }
 
-+ (EZSequence *)concat:(id<NSFastEnumeration>)sequences {
++ (EZSequence *)concatSequences:(id<NSFastEnumeration>)sequences {
     NSParameterAssert(sequences);
     if (!sequences) { return nil; }
     return [EZS_Sequence(sequences) flatten];
@@ -230,7 +230,7 @@ NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOf
     return [mutableDic copy];
 }
 
-+ (EZSequence<EZSequence *> *)zip:(id<NSFastEnumeration>)zippedEnumeration {
++ (EZSequence<EZSequence *> *)zipSequences:(id<NSFastEnumeration>)zippedEnumeration {
     NSParameterAssert(zippedEnumeration);
     if (!zippedEnumeration) { return nil; }
     NSMutableArray<EZSequence *> *result = [NSMutableArray new];
@@ -259,7 +259,7 @@ NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOf
 - (EZSequence<EZSequence *> *)zip:(id<NSFastEnumeration>)anotherSequence {
     NSParameterAssert(anotherSequence);
     if (!anotherSequence) { return nil; }
-    return [EZSequence zip:@[self, anotherSequence]];
+    return [EZSequence zipSequences:@[self, anotherSequence]];
 }
 
 @end

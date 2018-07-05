@@ -9,128 +9,128 @@
 #import <EasySequence/EZSBlockDefines.h>
 
 /**
- 返回一个 直接返回参数的mapBlock
+ Returns An EZSMapBlock type block directly without any change
 
- @return MapBlock
+ @return An EZSMapBlock type block
  */
 EZSMapBlock EZS_ID(void);
 
 /**
- 通过isKindOf判断，返回一个`EZSFliterBlock`。
-
- @param klass 需要判断类型的Class
- @return 一个EZSFliterBlock
+ Returns an EZSFliterBlock type block that indicates whether object accepted in return block is an instance of given class or an instance of any class that inherits from that class
+ 
+ @param klass A class object representing the Objective-C class to be tested.
+ @return An EZSFliterBlock type block
  */
 EZSFliterBlock EZS_isKindOf_(Class klass);
 #define EZS_isKindOf(__klass__)     EZS_isKindOf_([__klass__ class])
 
 /**
- 通过isEqual判断，返回一个`EZSFliterBlock`。
+ Returns an EZSFliterBlock block that indicates whether object accepted in return block and a given object are equal.
  
- @param value 需要判断是否相等的对象
- @return 一个EZSFliterBlock
+ @param value The object to be compared to the receiver.
+ @return An EZSFliterBlock type block
  */
 EZSFliterBlock EZS_isEqual(id value);
 
 /**
- 返回一个`EZSFliterBlock`，判断元素否存在。
+ Returns an EZSFliterBlock block that indicates whether the element exists.
  
- @return 一个EZSFliterBlock
+ @return An EZSFliterBlock type block
  */
 EZSFliterBlock EZS_isExists(void);
 
 /**
- 返回一个与入参`EZSFliterBlock`相反情况的`EZSFliterBlock`。
+ Returns an EZSFliterBlock block that has the logically opposite value of original. it turns a true into a false, etc.
  
- @param block `EZSFliterBlock`类型的block
- @return 一个EZSFliterBlock
+ @param block An `EZSFliterBlock` type block
+ @return An EZSFliterBlock type block
  */
 EZSFliterBlock EZS_not(EZSFliterBlock block);
 
 /**
- 得到一个KeyPath字符串(此写法带语法检查以保证keyPath拼写正确)
+ EZS_KeyPath allows compile-time verification of key paths. Given a real class and key path
 
- @param OBJ Class
- @param PATH keyPath
- @return 返回`PATH`字符串
+ @param OBJ The Class
+ @param PATH Key path
+ @return the macro returns an NSString containing all but the first path component or argument
  */
 #define EZS_KeyPath(OBJ, PATH)  (((void)(NO && ((void)[OBJ new].PATH, NO)), @# PATH))
 
 /**
- 将一个`EZSMapBlock`中的入参映射为原入参对象的keyPath对象的`EZSMapBlock`.
-
- @param propertyName KeyPath名称
- @return 一个EZSMapBlock
+ Returns an EZSMapBlock type block and object accepted in return block performs `valueForKeyPath:` with propertyName
+ 
+ @param keyPath The name of one of the objects's properties.
+ @return An EZSMapBlock type block
  */
-EZSMapBlock EZS_propertyWith(NSString *propertyName);
+EZSMapBlock EZS_valueForKeypath(NSString *keyPath);
 
 /**
- 返回一个`EZSMapBlock`。如果一个`EZSMapBlock`中的入参是NSDictionary类型，则将dictionary映射为objectForKey:对象。
-
- @param keyName 字典的key
- @return 一个的EZSMapBlock
+ Returns an EZSMapBlock type block and object in return block gets the value associated with a given key
+ 
+ @param key The key for which to return the corresponding value
+ @return An EZSMapBlock type block
  */
-EZSMapBlock EZS_valueWithKey(NSString *keyName);
+EZSMapBlock EZS_valueForKey(NSString *key);
 
 /**
- 遍历每一个元素，并执行元素的`selector`。
-
- @param selector 要对元素执行的selector
- @return 一个EZSApplyBlock，该block没有返回值
+ Returns an EZSApplyBlock type block and object accepted in return block performs selctor
+ 
+ @param selector A selector identifying the message to send. 
+ @return An EZSApplyBlock type block
  */
 EZSApplyBlock EZS_performSelector(SEL selector);
 
 /**
- 遍历每一个元素，并执行元素的`selector`。
+ Returns an EZSApplyBlock type block and object accepted in return block performs selctor with one argument.
  
- @param selector 要对元素执行的selector
- @param param1 第一个参数
- @return 一个EZSApplyBlock，该block没有返回值
+ @param selector A selector identifying the message to send
+ @param param1 An object that is the sole argument of the message.
+ @return An EZSApplyBlock type block
  */
 EZSApplyBlock EZS_performSelector1(SEL selector, id param1);
 
 /**
- 遍历每一个元素，并执行元素的`selector`。
+ Returns an EZSApplyBlock type block and object accepted in return block performs selctor with two arguments.
  
- @param selector 要对元素执行的selector
- @param param1 第一个参数
- @param param2 第二个参数
- @return 一个EZSApplyBlock，该block没有返回值
+ @param selector A selector identifying the message to send
+ @param param1 An object that is the first argument of the message
+ @param param2 An object that is the second argument of the message
+ @return An EZSApplyBlock type block
  */
 EZSApplyBlock EZS_performSelector2(SEL selector, id param1, id param2);
 
 /**
- 将一个`EZSMapBlock`中的入参映射为 元素执行selector之后的结果。
+ Returns an EZSMapBlock type block and object accepted in return block performs selctor
 
- @param selector 要对元素执行的selector
- @return 一个EZSMapBlock
+ @param selector A selector identifying the message to send
+ @return An EZSMapBlock type block
  */
 EZSMapBlock EZS_mapWithSelector(SEL selector);
 
 /**
- 将一个`EZSMapBlock`中的入参映射为 元素执行selector之后的结果。
- 
- @param selector 要对元素执行的selector
- @param param1 第一个参数
- @return 一个EZSMapBlock
+ Returns an EZSMapBlock type block and object accepted in return block performs selctor with one argument
+
+ @param selector A selector identifying the message to send
+ @param param1 An object that is the first argument of the message
+ @return An EZSMapBlock type block
  */
 EZSMapBlock EZS_mapWithSelector1(SEL selector, id param1);
 
 /**
- 将一个`EZSMapBlock`中的入参映射为 元素执行selector之后的结果。
- 
- @param selector 要对元素执行的selector
- @param param1 第一个参数
- @param param2 第二个参数
- @return 一个EZSMapBlock
+ Returns an EZSMapBlock type block and object accepted in return block performs selctor with two arguments
+
+ @param selector A selector identifying the message to send
+ @param param1 An object that is the first argument of the message
+ @param param2 An object that is the second argument of the message
+ @return An EZSMapBlock type block
  */
 EZSMapBlock EZS_mapWithSelector2(SEL selector, id param1, id param2);
 
 /**
- 判断两个元素实例是否相同
+ Compares two objects for equality.
 
- @param left 需要被判断的实例
- @param right 需要被判断的实例
- @return 实例是否相等
+ @param left The first object to compare.
+ @param right The second object to compare.
+ @return Returns true if the objects are equal, otherwise false.
  */
 FOUNDATION_EXTERN BOOL EZS_instanceEqual(id left, id right);

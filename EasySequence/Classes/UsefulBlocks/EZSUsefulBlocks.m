@@ -37,16 +37,15 @@ EZSFliterBlock EZS_isExists() {
     };
 }
 
-EZSMapBlock EZS_propertyWith(NSString *propertyName) {
+EZSMapBlock EZS_valueForKeypath(NSString *keyPath) {
     return ^id(id object) {
-        return [object valueForKeyPath:propertyName];
+        return [object valueForKeyPath:keyPath];
     };
 }
 
-EZSMapBlock EZS_valueWithKey(NSString *keyName) {
-    return ^id(NSDictionary *dictionary) {
-        NSCAssert([dictionary isKindOfClass:[NSDictionary class]], @"%@ is not a dictionary", dictionary);
-        return dictionary[keyName];
+EZSMapBlock EZS_valueForKey(NSString *key) {
+    return ^id(id object) {
+        return [object valueForKey:key];
     };
 }
 

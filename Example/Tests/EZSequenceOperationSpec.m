@@ -155,7 +155,7 @@ describe(@"EZSequence Operations", ^{
         NSArray *a = @[@1, @2, @3];
         NSArray *b = @[@"4", @"5"];
         NSArray *c = @[@"A", @"B", @"C"];
-        EZSequence *result = [EZSequence concat:@[a, b, c]];
+        EZSequence *result = [EZSequence concatSequences:@[a, b, c]];
         expect(result).to(equal(@[@1, @2, @3, @"4", @"5", @"A", @"B", @"C"]));
     });
     
@@ -243,14 +243,14 @@ describe(@"EZSequence Operations", ^{
         it(@"can use zip to zip some arrays", ^{
             NSArray *a = @[@1, @2, @3];
             NSArray *b = @[@"a", @"b", @"c"];
-            expect([EZSequence zip:@[a, b]]).to(equal(@[@[@1, @"a"], @[@2, @"b"], @[@3, @"c"]]));
+            expect([EZSequence zipSequences:@[a, b]]).to(equal(@[@[@1, @"a"], @[@2, @"b"], @[@3, @"c"]]));
             expect([EZS_Sequence(a) zip:b]).to(equal(@[@[@1, @"a"], @[@2, @"b"], @[@3, @"c"]]));
         });
         
         it(@"can use zip to zip some arrays, and support different count", ^{
             NSArray *a = @[@1, @2, @3];
             NSArray *b = @[@"a", @"b"];
-            expect([EZSequence zip:@[a, b]]).to(equal(@[@[@1, @"a"], @[@2, @"b"]]));
+            expect([EZSequence zipSequences:@[a, b]]).to(equal(@[@[@1, @"a"], @[@2, @"b"]]));
             expect([EZS_Sequence(a) zip:b]).to(equal(@[@[@1, @"a"], @[@2, @"b"]]));
         });
         
@@ -258,7 +258,7 @@ describe(@"EZSequence Operations", ^{
             NSArray *a = @[@1, @2, @3];
             NSString *b = @"b";
             expectAction((^(){
-                __attribute__((unused)) EZSequence *zipedSequence = [EZSequence zip:@[a, b]];
+                __attribute__((unused)) EZSequence *zipedSequence = [EZSequence zipSequences:@[a, b]];
             })).to(raiseException().named(EZSequenceExceptionName).reason(EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOfNSFastEnumeration));
             expectAction((^(){
                 __attribute__((unused)) EZSequence *zipedSequence = [EZS_Sequence(a) zip:(id<NSFastEnumeration>)b];

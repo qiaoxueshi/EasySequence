@@ -10,15 +10,15 @@
 @class EZSequence;
 
 /**
- 转换协议，一个类如果实现了此协议，即可得到一个由EZSequence转换来的本类的实例。
+ The EZSTransfer protocol is adopted by class that want to get an object converted from EZSequence.
  */
 @protocol EZSTransfer <NSObject>
 
 /**
- 从一个EZSequence转换，得到一个对象。
+ Converts sequence to the specified object
 
- @param sequence 要转换的EZSequence
- @return 一个对象实例
+ @param sequence An sequence object to be converted
+ @return An specified object
  */
 + (instancetype)transferFromSequence:(EZSequence *)sequence;
 

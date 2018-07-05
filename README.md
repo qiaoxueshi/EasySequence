@@ -196,7 +196,8 @@ NSOrderedSet *orderedSet = [sequence as:NSOrderedSet.class];
 
 William Zang, [chengwei.zang.1985@gmail.com](mailto:chengwei.zang.1985@gmail.com)  
 姜沂, [nero_jy@qq.com](mailto:nero_jy@qq.com)  
-Qin Hong, [qinhong@face2d.com](mailto:qinhong@face2d.com)
+Qin Hong, [qinhong@face2d.com](mailto:qinhong@face2d.com)  
+SketchK, [zhangsiqi1988@gmail.com](mailto:zhangsiqi1988@gmail.com)
 
 ## License
 

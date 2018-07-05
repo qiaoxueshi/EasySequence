@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'EasySequence'
-  s.version          = '1.2.1'
-  s.summary          = 'a powerful fundamental library to process sequcence type.'
+  s.version          = '1.3.0'
+  s.summary          = "Make collections's operation easier for you."
 
   s.description      = <<-DESC
 EasySequence is a powerful fundamental library to process sequcence type, such as array, set, dictionary. All type object which conforms to NSFastEnumeration protocol can be initialzed to an EZSequence instance, then you can operation with them. Finally, you can transfer them back to the original type.

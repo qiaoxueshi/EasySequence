@@ -14,209 +14,186 @@ FOUNDATION_EXTERN NSString * const EZSequenceExceptionReason_ResultOfFlattenMapB
 FOUNDATION_EXTERN NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOfNSFastEnumeration;
 
 /**
- EZSequence操作
+ EZSequence's operations
  */
 @interface EZSequence<T> (Operations)
 
 /**
- 带有index的遍历
+ Executes a given block using each object in the sequence
  
- @param eachBlock 遍历block, 入参为：
- - item: 遍历到的元素
- - index: 遍历到的下标
+ @param eachBlock The block to apply to elements in the sequence.
+ The block takes two arguments:
+ - item: The object
+ - index: The index of the object in the sequence.
  */
 - (void)forEachWithIndex:(void (NS_NOESCAPE ^)(T item, NSUInteger index))eachBlock;
 
 /**
- 遍历序列
+ Executes a given block using each object in the sequence
  
- @param eachBlock 遍历block
- - item: 遍历序列时传入的每一个元素
+ @param eachBlock The block to apply to elements in the sequence.
+ The block takes one argument:
+ - item: The object.
  */
 - (void)forEach:(void (NS_NOESCAPE ^)(T item))eachBlock;
 
 /**
- 将含有序列的序列降解为一维序列
-
- @return 一个新的序列
+ Returns a new sequence that is a one-dimensional flattening of self (recursively).
+ 
+ @return A new EZSequence object
  */
 - (EZSequence *)flatten;
 
 /**
- flattenMap操作，返回一个新的序列。
+ Returns a new sequence with the concatenated results of running flattenBlock once for every element in self.
 
- @param flattenBlock flattenMap Block
- @return 一个新的序列
+ @param flattenBlock The block to apply to elements in the sequence.
+ @return A new EZSequence object
  */
 - (EZSequence *)flattenMap:(id<NSFastEnumeration> (NS_NOESCAPE ^)(T item))flattenBlock;
 
 /**
- 拼接操作 将当期序列和参数传递的的序列拼接为一个序列
+ Appends the elements of anotherSequence to self.
 
- @param anotherSequence 另外一个序列
- @return 一个拼接后的新序列
+ @param anotherSequence another sequece to be appened
+ @return A new EZSequenced object
  */
 - (EZSequence *)concat:(id<NSFastEnumeration>)anotherSequence;
 
 /**
- 拼接操作 将含有序列的序列拼接为一个序列
+ Appends sequences in argument to a new sequence
 
- @param sequences 实现了快速枚举协议的序列，元素必须也实现了快速枚举协议
- @return 一个拼接后的新序列
+ @param sequences An argument contains sequences
+ @return A new EZSequenced object
  */
-+ (EZSequence *)concat:(id<NSFastEnumeration>)sequences;
++ (EZSequence *)concatSequences:(id<NSFastEnumeration>)sequences;
 
 /**
- 过滤操作
-
- @param filterBlock 过滤block
- @return 一个新的序列，元素为过滤后的元素。
+ Returns a new sequence containing all elements of self for which the given block returns a true value.
+ 
+ @param filterBlock A block to filter elements
+ @return A new sequence object
  */
 - (EZSequence<T> *)filter:(BOOL (NS_NOESCAPE ^)(T item))filterBlock;
 
 /**
- 映射操作
+ Invokes the mapBlock once for each element of self. Creates a new sequence containing the values returned by the mapBlock.
 
- @param mapBlock 映射block，参数为：
-    - item: 元素
+ @param mapBlock A block to map element，
+ The block takes one argument:
+    - item: The object
  
- @return 一个新的序列，元素为映射后的元素。
+ @return A new sequence object
  */
 - (EZSequence *)map:(id (NS_NOESCAPE ^)(T item))mapBlock;
 
 /**
- 映射block中带有Index参数的映射操作
+ Invokes the mapBlock once for each element of self. Creates a new sequence containing the values returned by the mapBlock.
+
+ @param mapBlock a block to map element，
+ The block takes two arguments:
+    - item: The object
+    - index: The index of the object in the sequence
  
- @param mapBlock 映射block，参数为：
-    - item: 元素
-    - index: 元素下标
- 
- @return 一个新的序列，元素为映射后的元素。
+ @return A new sequence object
  */
 - (EZSequence *)mapWithIndex:(id (NS_NOESCAPE ^)(T item, NSUInteger index))mapBlock;
 
 /**
- 从一个序列中取前N个元素组成新序列
+ Returns first n (n = count) elements of self.
 
- @param count 数量
- @return 新序列
+ @param count Count of elements want to take
+ @return A new sequence object
  */
 - (EZSequence<T> *)take:(NSUInteger)count;
 
 /**
- 从一个序列中跳过前N个元素组成新序列
+ Returns a new sequence contains elements of self from n (n = count) to the end
 
- @param count 数量
- @return 新序列
+ @param count Count of elements want to skip
+ @return A new sequence
  */
 - (EZSequence<T> *)skip:(NSUInteger)count;
 
 /**
- 返回序列中首元素。如EZSequence没有内容，则返回nil
+ Returns the first element of self, or nil, if self is empty
 
- @return 首个元素
+ @return The first element
  */
 - (nullable T)firstObject;
 
 /**
- 从当前序列里找到满足符合条件的元素 如果序列为空或者没找到 则返回nil
-
- @param checkBlock 判断方法
- @return 符合条件的元素
+ Returns the first element of self that satisfies the given block. or nil if there is no element that satisfies block.
+ 
+ @param checkBlock A block to check element
+ @return The first element match the checkBlock
  */
 - (nullable id)firstObjectWhere:(BOOL (NS_NOESCAPE ^)(T item))checkBlock;
 
 /**
- 从当前序列里找到满足符合条件的元素 如果序列为空或者没找到 则返回NSNotFound
-
- @param checkBlock 判断方法
- @return 符合条件的元素
+ Return the index of the first element of self that satisfies the given block. or nil if there is no element that satisfies block.
+ 
+ @param checkBlock A block to check element
+ @return The Index of the first element matched checkBlokc
  */
 - (NSUInteger)firstIndexWhere:(BOOL (NS_NOESCAPE ^)(T item))checkBlock;
 
 /**
- 遍历所有的元素, 返回是否存在元素可以满足checkBlock的条件
+ Passes each element of self to the given block. The checkBlock returns true if the block ever returns a value other than false or nil
 
- @param checkBlock 需要检查的Block
- @return 是否有元素满足`checkBlock`
+ @param checkBlock A block to check element
+ @return A bool value
  */
 - (BOOL)any:(BOOL (NS_NOESCAPE ^)(T item))checkBlock;
 
 /**
- 选择操作
+ Returns a new sequence containing all elements of self for which the given block returns a true value.
 
- @param selectBlock 选择block, 参数为每一项元素，返回值为一个布尔型，表示此元素是否被选择。
- @return 一个EZSequence实例，元素为选择后的元素
+ @param selectBlock A block to select element。
+ @return A new sequence object
  */
 - (EZSequence<T> *)select:(BOOL (NS_NOESCAPE ^)(T item))selectBlock;
 
 /**
- 反选操作(与选择操作逻辑相反)
+ Returns a new sequence containing the elements in self for which the given block is not true
 
- @param rejectBlock 反选的block，参数为每一项元素，返回值为一个布尔型，为YES时表示返回序列中不包含此元素。
- @return 一个EZSequence实例，元素为反选后剩下的元素。
+ @param rejectBlock A block to reject element
+ @return A new sequence object
  */
 - (EZSequence<T> *)reject:(BOOL (NS_NOESCAPE ^)(T item))rejectBlock;
 
 /**
- 聚合操作。操作流程为：
-    1. `startValue`作为起始值，被传入`reduceBlock`的`accumulator`参数，同时，`item`为遍历到的第一个元素
-    2. 在`reduceBlock`中，通过`accumulator`和当前的`item`，计算出一个值并返回，作为下一次迭代时传入的`accumulator`
-    3. 重复步骤2，直到遍历完成
-    4. 返回最后一次遍历执行的`reduceBlock`的返回值
-
- Note:
-    - 如果EZSequence中没有元素，则返回值为`startValue`
-    - 如果EZSequence中只有一个元素，则返回值为`startValue`与第一个元素进行操作后的结果
+ Returns the result of combining the elements of the sequence using the given block.
  
- @param startValue 起始值
- @param reduceBlock reduce计算的block，参数为:
-    - accumulator: 累计操作后的值
-    - item: 当前元素
-    返回值为：accumulator和item进行缩减操作后的值，作为下一次的accumulator
- @return 操作完成后的最终结果
+ @param startValue The value to use as the initial accumulating value. startValue is passed to reduceBlock the first time the block is executed
+ @param reduceBlock A block that combines an accumulating value and an element of the sequence into a new accumulating value, to be used in the next call of the reduceBlock or returned to the caller.
+ @return The final accumulated value. If the sequence has no elements, the result is startValue.
  */
 - (id)reduceStart:(nullable id)startValue withBlock:(id _Nullable(NS_NOESCAPE ^)(id _Nullable accumulator, T _Nullable item))reduceBlock;
 
 /**
- 聚合操作。与‘reduceStart:withBlock:’比，不具有起始值。操作流程为：
-     1. 对EZSequence从第二个元素开始遍历。遍历到第二个元素时，将第一个元素传入`reduceBlock`的`accumulator`参数，同时，`item`为遍历到的第二个元素
-     2. 在`reduceBlock`中，通过`accumulator`和当前的`item`，计算出一个值并返回，作为下一次迭代时传入的`accumulator`
-     3. 重复步骤2，直到遍历完成
-     4. 返回最后一次遍历执行的`reduceBlock`的返回值
+ Returns the result of combining the elements of the sequence using the given block.
  
- Note:
-     - 如果EZSequence中没有元素，则返回值为`nil`
-     - 如果EZSequence中只有一个元素，则返回值为第一个元素
-
- @param reduceBlock reduce计算的block, 参数为:
-    accumulator - 累计操作的值
-    item - 当前元素
-    返回值为：accumulator和item进行缩减操作后的值，作为下一次的accumulator
-
- @return 操作完成后的最终结果
+ @param reduceBlock A block that combines an accumulating value and an element of the sequence into a new accumulating value, to be used in the next call of the reduceBlock or returned to the caller.
+ @return The final accumulated value. If the sequence has no elements, the result is nil.
  */
 - (id)reduce:(id (NS_NOESCAPE ^)(id accumulator, T item))reduceBlock;
 
 /**
- zip配对操作。操作流程为：
-    1. `sequences`是一个快速枚举协议的对象，其元素也是实现了快速枚举协议的对象
-    2. 对`sequences`的元素同时进行遍历，并把同时遍历一次所得到的全部对象封装为一个EZSequence，作为元素加入到要返回的EZSequence中
-    3. 如果任意一个元素被遍历完成，则整个遍历结束，返回最终的EZSequence
+ Converts sequences in arguments to one sequence, then merges elements of sequence with corresponding elements from another sequence.
+ This generates a sequence of x y-elements sequences. which x takes the lowest count of elements in all sequences and y is the count of sequences
 
- @param sequences 实现了快速枚举协议的序列，元素必须也实现了快速枚举协议
- @return 一个EZSequence实例，元素为zip配对后的EZSequence
+ @param sequences An arguments contain sequences
+ @return A new sequence object
  */
-+ (EZSequence<EZSequence *> *)zip:(id<NSFastEnumeration>)sequences;
++ (EZSequence<EZSequence *> *)zipSequences:(id<NSFastEnumeration>)sequences;
 
 /**
- zip配对操作。操作流程为：
- 1. `anotherSequence`是一个快速枚举协议的对象.
- 2. 对`self` 和 `anotherSequence`的元素同时进行遍历，并把同时遍历一次所得到的全部对象封装为一个EZSequence，作为元素加入到要返回的EZSequence中
- 3. 如果任意一个元素被遍历完成，则整个遍历结束，返回最终的EZSequence
+ Converts another sequence to one sequence, then merges elements of self with corresponding elements from another sequence.
+ This generates a sequence of x two-elements sequences. which x takes a smaller value between self.count and sequence.count
  
- @param anotherSequence 实现了快速枚举协议的序列，元素必须也实现了快速枚举协议
- @return 一个EZSequence实例，元素为zip配对后的EZSequence
+ @param anotherSequence another sequence to be zip
+ @return A new sequence object
  */
 - (EZSequence<EZSequence *> *)zip:(id<NSFastEnumeration>)anotherSequence;
 

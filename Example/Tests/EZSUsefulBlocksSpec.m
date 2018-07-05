@@ -79,8 +79,8 @@ describe(@"EZSUsefulBlocks test", ^{
     
     context(@"map useful blocks", ^{
         it(@"can generate a block to get value for key from object", ^{
-            EZSMapBlock mapNameBlock1 = EZS_propertyWith(@"name");
-            EZSMapBlock mapNameBlock2 = EZS_propertyWith(EZS_KeyPath(TestObject, name));
+            EZSMapBlock mapNameBlock1 = EZS_valueForKeypath(@"name");
+            EZSMapBlock mapNameBlock2 = EZS_valueForKeypath(EZS_KeyPath(TestObject, name));
             TestObject *t1 = [TestObject new];
             t1.name = @"t1";
             TestObject *t2 = [TestObject new];
@@ -94,14 +94,14 @@ describe(@"EZSUsefulBlocks test", ^{
         });
         
         it(@"can generate a block to get value for key from dictionary", ^{
-            EZSMapBlock mapNameBlock = EZS_valueWithKey(@"key");
+            EZSMapBlock mapNameBlock = EZS_valueForKey(@"key");
             NSArray *array = @[@{@"key": @"value1"}, @{@"key": @"value2"}];
             EZSequence<NSString *> *result = [EZS_Sequence(array) map:mapNameBlock];
             expect(result).to(equal(@[@"value1", @"value2"]));
         });
         
         it(@"should raise a assert when EZS_valueWithKey receive not kind of NSDictionary class ", ^{
-            EZSMapBlock mapNameBlock = EZS_valueWithKey(@"key");
+            EZSMapBlock mapNameBlock = EZS_valueForKey(@"key");
             NSArray *array = @[@{@"key": @"value1"}, @{@"key": @"value2"}];
             
             assertExpect(^{

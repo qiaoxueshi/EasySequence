@@ -32,7 +32,7 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "E8E541A9CD49A59C680C0F1D35DEEE88"
+            BlueprintIdentifier = "17D2D4FB9541502949BF4BF3E8A151C9"
             BuildableName = "EasySequence.framework"
             BlueprintName = "EasySequence"
             ReferencedContainer = "container:Pods/Pods.xcodeproj">

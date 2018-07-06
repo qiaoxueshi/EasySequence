@@ -9,12 +9,7 @@
 #import "EZSBlockDefines.h"
 #import "EZSTransfer.h"
 #import "EZSEnumerator.h"
-
-@interface EZSequence ()
-
-@property (nonatomic, strong) id<NSFastEnumeration> originSequence;
-
-@end
+#import "EZSequence+ProjectPrivate.h"
 
 @implementation EZSequence
 
@@ -31,11 +26,21 @@
 }
 
 - (id)as:(Class)clazz {
+    if ([(id)self.originSequence isMemberOfClass:clazz]) {
+        return self.originSequence;
+    }
+    // NSArray specializations
+    if (clazz == NSArray.class && [(id)self.originSequence class] == NSMutableArray.class) {
+        return [(id)self.originSequence copy];
+    }
     NSParameterAssert([clazz conformsToProtocol:@protocol(EZSTransfer)]);
     return [clazz transferFromSequence:self];
 }
 
 - (NSEnumerator *)objectEnumerator {
+    if ([(id)self.originSequence respondsToSelector:@selector(objectEnumerator)]) {
+        return [(id)self.originSequence objectEnumerator];
+    }
     return [[EZSEnumerator alloc] initWithFastEnumerator:self.originSequence];
 }
 
@@ -53,9 +58,20 @@
 }
 
 - (BOOL)isEqual:(id)object {
-    NSParameterAssert([[object class] conformsToProtocol:@protocol(NSFastEnumeration)]);
+    if (![[object class] conformsToProtocol:@protocol(NSFastEnumeration)]) {
+        return NO;
+    }
+    if ([(id)self.originSequence isKindOfClass:[object class]]
+        || [object isKindOfClass:[(id)self.originSequence class]]) {
+        return [(id)self.originSequence isEqual:object];
+    }
     NSEnumerator *selfEnumerator = [self objectEnumerator];
-    NSEnumerator *otherEnumerator = [[EZSEnumerator alloc] initWithFastEnumerator:object];
+    NSEnumerator *otherEnumerator = nil;
+    if ([object respondsToSelector:@selector(objectEnumerator)]) {
+        otherEnumerator = [object objectEnumerator];
+    } else {
+        otherEnumerator = [[EZSEnumerator alloc] initWithFastEnumerator:object];
+    }
     
     id leftValue = nil;
     id rightValue = nil;

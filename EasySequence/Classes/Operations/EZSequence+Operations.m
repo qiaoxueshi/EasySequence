@@ -10,6 +10,7 @@
 #import "EZSUsefulBlocks.h"
 #import "EZSEnumerator.h"
 #import "EZSMetaMacrosPrivate.h"
+#import "EZSequence+ProjectPrivate.h"
 
 NSString * const EZSequenceExceptionName = @"EZSequenceExceptionName";
 NSString * const EZSequenceExceptionReason_ResultOfFlattenMapBlockMustConformsNSFastEnumeation =

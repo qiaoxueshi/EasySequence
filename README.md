@@ -2,10 +2,11 @@
 <img src="https://raw.githubusercontent.com/meituan/EasySequence/master/images/banner.png" alt="EasySequence">  
 </p>
 
-[![CI Status](http://img.shields.io/travis/meituan/EasySequence.svg?style=flat)](https://travis-ci.org/meituan/EasySequence)
+[![Build Status](https://travis-ci.com/meituan/EasySequence.svg?branch=master)](https://travis-ci.com/meituan/EasySequence)
 [![Version](https://img.shields.io/cocoapods/v/EasySequence.svg?style=flat)](http://cocoapods.org/pods/EasySequence)
 [![License](https://img.shields.io/cocoapods/l/EasySequence.svg?style=flat)](http://cocoapods.org/pods/EasySequence)
 [![Platform](https://img.shields.io/cocoapods/p/EasySequence.svg?style=flat)](http://cocoapods.org/pods/EasySequence)
+[![codecov](https://codecov.io/gh/meituan/EasySequence/branch/master/graph/badge.svg)](https://codecov.io/gh/meituan/EasySequence)
 
 EasySequence is a powerful fundamental library to process sequcence type, such as array, set, dictionary. All type object which conforms to NSFastEnumeration protocol can be initialzed to an EZSequence instance, then you can operation with them. Finally, you can transfer them back to the original type.
 

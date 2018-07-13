@@ -98,6 +98,8 @@ describe(@"EZSequence behaviors", ^{
             sequence1 = [[EZSequence alloc] initWithOriginSequence:@[@4, @5, @6]];
             sequence2 = [[EZSequence alloc] initWithOriginSequence:[NSOrderedSet orderedSetWithObjects:@7, @8, @9, nil]];
             expect(sequence1).notTo(equal(sequence2));
+            NSObject *object = [NSObject new];
+            expect(sequence1).notTo(equal(object)); 
         });
     });
 

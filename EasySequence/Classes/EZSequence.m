@@ -30,7 +30,7 @@
         return self.originSequence;
     }
     // NSArray specializations
-    if (clazz == NSArray.class && [(id)self.originSequence class] == NSMutableArray.class) {
+    if (clazz == NSArray.class && [(id)self.originSequence isKindOfClass:clazz]) {
         return [(id)self.originSequence copy];
     }
     NSParameterAssert([clazz conformsToProtocol:@protocol(EZSTransfer)]);

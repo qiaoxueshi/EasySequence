@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		220AA3D42090956700F8378B /* EZSequenceOperationSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 220AA3D32090956700F8378B /* EZSequenceOperationSpec.m */; };
+		22ECB07A20F8A9840031C53D /* EZSEnumeratorSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 22ECB07920F8A9840031C53D /* EZSEnumeratorSpec.m */; };
+		22ECB07C20F8AD910031C53D /* EZSWeakReferenceSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 22ECB07B20F8AD910031C53D /* EZSWeakReferenceSpec.m */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -40,6 +42,8 @@
 		220AA3D32090956700F8378B /* EZSequenceOperationSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EZSequenceOperationSpec.m; sourceTree = "<group>"; };
 		221D9422208EE86A00C8FF30 /* EasySequence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EasySequence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		222BF5D0208EEA0500E409DB /* EasySequence.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EasySequence.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		22ECB07920F8A9840031C53D /* EZSEnumeratorSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EZSEnumeratorSpec.m; sourceTree = "<group>"; };
+		22ECB07B20F8AD910031C53D /* EZSWeakReferenceSpec.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EZSWeakReferenceSpec.m; sourceTree = "<group>"; };
 		2667B9AE1E56572F15A942CA /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -157,6 +161,8 @@
 				CE591AA82099693900EEB014 /* EZSQueueSpec.m */,
 				CE591AAA2099900A00EEB014 /* EZSUsefulBlocksSpec.m */,
 				CE591AB72099963F00EEB014 /* iOSTest-Bridging-Header.h */,
+				22ECB07920F8A9840031C53D /* EZSEnumeratorSpec.m */,
+				22ECB07B20F8AD910031C53D /* EZSWeakReferenceSpec.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -392,10 +398,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD43B19D2099A04E003BB8E0 /* EZSOrderedSet.m in Sources */,
+				22ECB07C20F8AD910031C53D /* EZSWeakReferenceSpec.m in Sources */,
 				220AA3D42090956700F8378B /* EZSequenceOperationSpec.m in Sources */,
 				CE591AAB2099900A00EEB014 /* EZSUsefulBlocksSpec.m in Sources */,
 				CE591ABA209996B700EEB014 /* TestObject.m in Sources */,
 				CE591AAF2099944B00EEB014 /* AssertionHandler.m in Sources */,
+				22ECB07A20F8A9840031C53D /* EZSEnumeratorSpec.m in Sources */,
 				CE591ABC209AB9FB00EEB014 /* EZSWeakOrderedSet.m in Sources */,
 				DD43B19720949698003BB8E0 /* EZSWeakArraySpec.m in Sources */,
 				6003F5BC195388D20070C39A /* EZSequenceSpec.m in Sources */,

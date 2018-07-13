@@ -47,7 +47,7 @@
 
 - (BOOL)isEqual:(EZSWeakReference *)object {
     if ([object isKindOfClass:[self class]]) {
-        return [self.reference isEqual:object.reference];
+        return self.reference == object.reference || [self.reference isEqual:object.reference];
     } else {
         return [self.reference isEqual:object];
     }

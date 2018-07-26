@@ -71,6 +71,17 @@ describe(@"EZSequence behaviors", ^{
                 expect(receive).to(equal(@[@1, @2, @3]));
             }
             {
+                EZSWeakArray *weakArray = [[EZSWeakArray alloc] initWithNSArray:@[@1, @2, @3]];
+                EZSequence<NSNumber *> *sequence = weakArray.EZS_asSequence;
+                NSMutableArray<NSNumber *> *receive = [NSMutableArray array];
+                
+                NSEnumerator<NSNumber *> *enumerator = [sequence objectEnumerator];
+                for (id item in enumerator) {
+                    [receive addObject:item];
+                }
+                expect(receive).to(equal(@[@1, @2, @3]));
+            }
+            {
                 NSMutableSet *largeSet = [NSMutableSet set];
                 NSMutableSet *receiveSet = [NSMutableSet set];
                 for (int i = 0; i < 999; ++i) {

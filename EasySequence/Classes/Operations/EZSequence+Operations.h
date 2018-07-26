@@ -77,6 +77,14 @@ FOUNDATION_EXTERN NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnN
 - (EZSequence<T> *)filter:(BOOL (NS_NOESCAPE ^)(T item))filterBlock;
 
 /**
+ Returns a new sequence containing all elements of self for which the given block returns a true value.
+ 
+ @param filterBlock A block to filter elements
+ @return A new sequence object
+ */
+- (EZSequence<T> *)filterWithIndex:(BOOL (NS_NOESCAPE ^)(T item, NSUInteger index))filterBlock;
+
+/**
  Invokes the mapBlock once for each element of self. Creates a new sequence containing the values returned by the mapBlock.
 
  @param mapBlock A block to map element，
@@ -134,7 +142,7 @@ FOUNDATION_EXTERN NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnN
  Return the index of the first element of self that satisfies the given block. or nil if there is no element that satisfies block.
  
  @param checkBlock A block to check element
- @return The Index of the first element matched checkBlokc
+ @return The Index of the first element matched checkBlock
  */
 - (NSUInteger)firstIndexWhere:(BOOL (NS_NOESCAPE ^)(T item))checkBlock;
 
@@ -149,10 +157,18 @@ FOUNDATION_EXTERN NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnN
 /**
  Returns a new sequence containing all elements of self for which the given block returns a true value.
 
- @param selectBlock A block to select element。
+ @param selectBlock A block to select element
  @return A new sequence object
  */
 - (EZSequence<T> *)select:(BOOL (NS_NOESCAPE ^)(T item))selectBlock;
+
+/**
+ Returns a new sequence containing all elements of self for which the given block returns a true value.
+ 
+ @param selectBlock A block to select element
+ @return A new sequence object
+ */
+- (EZSequence<T> *)selectWithIndex:(BOOL (NS_NOESCAPE ^)(T item, NSUInteger index))selectBlock;
 
 /**
  Returns a new sequence containing the elements in self for which the given block is not true
@@ -161,6 +177,14 @@ FOUNDATION_EXTERN NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnN
  @return A new sequence object
  */
 - (EZSequence<T> *)reject:(BOOL (NS_NOESCAPE ^)(T item))rejectBlock;
+
+/**
+ Returns a new sequence containing the elements in self for which the given block is not true
+ 
+ @param rejectBlock A block to reject element
+ @return A new sequence object
+ */
+- (EZSequence<T> *)rejectWithIndex:(BOOL (NS_NOESCAPE ^)(T item, NSUInteger index))rejectBlock;
 
 /**
  Returns the result of combining the elements of the sequence using the given block.

@@ -78,6 +78,12 @@ describe(@"EZSUsefulBlocks test", ^{
     });
     
     context(@"map useful blocks", ^{
+        it(@"can generate a block to map item to itself without any change", ^{
+            EZSequence *seq = [@[@"11", @"22", @"4"] EZS_asSequence];
+            EZSequence *mappedSeq = [seq map:EZS_ID()];
+            expect(mappedSeq).to(equal(@[@"11", @"22", @"4"]));
+        });
+
         it(@"can generate a block to get value for key from object", ^{
             EZSMapBlock mapNameBlock1 = EZS_valueForKeypath(@"name");
             EZSMapBlock mapNameBlock2 = EZS_valueForKeypath(EZS_KeyPath(TestObject, name));

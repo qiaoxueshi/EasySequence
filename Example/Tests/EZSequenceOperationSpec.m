@@ -67,7 +67,15 @@ describe(@"EZSequence Operations", ^{
         }];
         expect(oddNumbers).to(equal(@[@1, @3, @5]));
     });
-    
+
+    it(@"can return a new array from the origin array which contains the items that meets the given condition with an index", ^{
+        EZSequence<NSNumber *> *sequence = [@[@1, @2, @3, @4, @5, @6] EZS_asSequence];
+        EZSequence<NSNumber *> *oddNumbers = [sequence selectWithIndex:^BOOL(NSNumber * _Nonnull item, NSUInteger index) {
+            return index % 2 == 1;
+        }];
+        expect(oddNumbers).to(equal(@[@2, @4, @6]));
+    });
+
     it(@"can return a new array from the origin array which does not contain the items that meets the given condition", ^{
         EZSequence<NSNumber *> *sequence = [@[@1, @2, @3, @4, @5, @6] EZS_asSequence];
         EZSequence<NSNumber *> *evenNumbers = [sequence reject:^BOOL(NSNumber * _Nonnull value) {
@@ -75,7 +83,15 @@ describe(@"EZSequence Operations", ^{
         }];
         expect(evenNumbers).to(equal(@[@2, @4, @6]));
     });
-    
+
+    it(@"can return a new array from the origin array which does not contain the items that meets the given condition with an index", ^{
+        EZSequence<NSNumber *> *sequence = [@[@1, @2, @3, @4, @5, @6] EZS_asSequence];
+        EZSequence<NSNumber *> *evenNumbers = [sequence rejectWithIndex:^BOOL(NSNumber * _Nonnull item, NSUInteger index) {
+            return index % 2 == 1;
+        }];
+        expect(evenNumbers).to(equal(@[@1, @3, @5]));
+    });
+
     it(@"can take some items use `take:` method ", ^{
         {
             EZSequence<NSNumber *> *sequence = [@[@1, @2, @3, @4, @5] EZS_asSequence];
@@ -157,6 +173,24 @@ describe(@"EZSequence Operations", ^{
         NSArray *c = @[@"A", @"B", @"C"];
         EZSequence *result = [EZSequence concatSequences:@[a, b, c]];
         expect(result).to(equal(@[@1, @2, @3, @"4", @"5", @"A", @"B", @"C"]));
+    });
+    
+    context(@"filter", ^{
+        it(@"can filter items to get another sequence", ^{
+            EZSequence *seq = EZS_Sequence(@[@1, @2, @3, @4, @5]);
+            EZSequence *filteredSeq = [seq filter:^BOOL(NSNumber * _Nonnull item) {
+                return 1.f/item.floatValue > 0.25f;
+            }];
+            expect(filteredSeq).to(equal(@[@1, @2, @3]));
+        });
+
+        it(@"can filter items with an index to get another sequence", ^{
+            EZSequence *seq = EZS_Sequence(@[@1, @2, @3, @4, @5]);
+            EZSequence *filteredSeq = [seq filterWithIndex:^BOOL(NSNumber * _Nonnull item, NSUInteger index) {
+                return index > 2 && index <= 3;
+            }];
+            expect(filteredSeq).to(equal(@[@4]));
+        });
     });
     
     context(@"reduce", ^{

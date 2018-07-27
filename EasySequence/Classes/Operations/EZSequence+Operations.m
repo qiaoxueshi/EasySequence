@@ -86,11 +86,27 @@ NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOf
 - (EZSequence *)filter:(EZSFliterBlock)filterBlock {
     NSParameterAssert(filterBlock);
     NSMutableArray *array = [NSMutableArray new];
-    for (id item in self) {
-        if (filterBlock && filterBlock(item)) {
-            [array addObject:item];
+    if (filterBlock) {
+        for (id item in self) {
+            if (filterBlock(item)) {
+                [array addObject:item];
+            }
         }
-    };
+    }
+    return EZS_Sequence(array);
+}
+
+- (EZSequence *)filterWithIndex:(EZSFilterWithIndexBlock)filterBlock {
+    NSParameterAssert(filterBlock);
+    NSMutableArray *array = [NSMutableArray new];
+    NSUInteger index = 0;
+    if (filterBlock) {
+        for (id item in self) {
+            if (filterBlock(item, index++)) {
+                [array addObject:item];
+            }
+        }
+    }
     return EZS_Sequence(array);
 }
 
@@ -112,7 +128,7 @@ NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOf
         if (mapBlock) {
             [array addObject:mapBlock(item, index++)];
         }
-    };
+    }
     return EZS_Sequence(array);
 }
 
@@ -189,10 +205,23 @@ NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOf
     return [self filter:selectBlock];
 }
 
+- (EZSequence *)selectWithIndex:(BOOL (^)(id _Nonnull, NSUInteger index))selectBlock {
+    NSParameterAssert(selectBlock);
+    return [self filterWithIndex:selectBlock];
+}
+
 - (EZSequence *)reject:(BOOL (^)(id _Nonnull))rejectBlock {
     NSParameterAssert(rejectBlock);
     if (!rejectBlock) { return nil;}
     return [self select:EZS_not(rejectBlock)];
+}
+
+- (EZSequence *)rejectWithIndex:(BOOL (^)(id _Nonnull, NSUInteger index))rejectBlock {
+    NSParameterAssert(rejectBlock);
+    if (!rejectBlock) { return nil;}
+    return [self filterWithIndex:^BOOL(id instance, NSUInteger index) {
+        return !rejectBlock(instance, index);
+    }];
 }
 
 - (id)reduceStart:(id)startValue withBlock:(id  _Nullable (^)(id _Nullable, id _Nullable))reduceBlock {

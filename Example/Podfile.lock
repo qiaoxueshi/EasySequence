@@ -1,7 +1,7 @@
 PODS:
   - EasySequence (1.3.0)
-  - Nimble (7.1.2)
-  - Quick (1.3.0)
+  - Nimble (7.1.3)
+  - Quick (1.3.1)
 
 DEPENDENCIES:
   - EasySequence (from `../`)
@@ -19,8 +19,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   EasySequence: 922b902a6fd4d978c3c25f877dd230fdfc3e5778
-  Nimble: 3835ba9f459daa6b347f8a8e110aaae8ca1920a8
-  Quick: 03278013f71aa05fe9ecabc94fbcc6835f1ee76f
+  Nimble: 2839b01d1b31f6a6a7777a221f0d91cf52e8e27b
+  Quick: d17304d58d0d169dd0bd1c6e5c28e3318de32a1a
 
 PODFILE CHECKSUM: 75a1fc4f0fff36fa252fba8310c993126b3b10f0
 

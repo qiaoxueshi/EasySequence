@@ -29,7 +29,7 @@
     if ([(id)self.originSequence isMemberOfClass:clazz]) {
         return self.originSequence;
     }
-    // NSArray specializations
+    // NSArray specializations.
     if (clazz == NSArray.class && [(id)self.originSequence isKindOfClass:clazz]) {
         return [(id)self.originSequence copy];
     }

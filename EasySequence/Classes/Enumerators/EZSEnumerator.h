@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- `EZSEnumerator` is an enumerator object that lets you access each object in the sequence
+ `EZSEnumerator` is an enumerator object that lets you access each object in the sequence.
  */
 @interface EZSEnumerator : NSEnumerator
 

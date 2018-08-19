@@ -12,9 +12,9 @@
 @interface NSObject (EZSequence)
 
 /**
- Get An EZSequence object. Needs to implement `NSFastEnumeration` protocol first
+ Get An EZSequence object. Needs to implement `NSFastEnumeration` protocol first.
 
- @return An initialized EZSequence object
+ @return    An initialized EZSequence object
  */
 - (EZSequence *)EZS_asSequence;
 

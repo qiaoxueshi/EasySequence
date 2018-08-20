@@ -9,7 +9,7 @@
 #import <EasySequence/EZSTransfer.h>
 
 /**
- Object can be converted between NSOrderedSet and EZSequence
+ Object can be converted between NSOrderedSet and EZSequence.
  */
 @interface NSOrderedSet (EZSTransfer) <EZSTransfer>
 

@@ -15,10 +15,10 @@
 @protocol EZSTransfer <NSObject>
 
 /**
- Converts sequence to the specified object
+ Converts sequence to the specified object.
 
- @param sequence An sequence object to be converted
- @return An specified object
+ @param sequence     An sequence object to be converted
+ @return             An specified object
  */
 + (instancetype)transferFromSequence:(EZSequence *)sequence;
 

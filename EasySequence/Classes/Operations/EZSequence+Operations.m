@@ -19,7 +19,6 @@ NSString * const EZSequenceExceptionReason_ResultOfFlattenMapBlockMustConformsNS
 NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOfNSFastEnumeration =
 @"EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOfNSFastEnumeration";
 
-
 @implementation EZSequence (Operations)
 
 - (void)forEachWithIndex:(void (^)(id _Nonnull, NSUInteger))eachBlock {
@@ -271,7 +270,6 @@ NSString * const EZSequenceExceptionReason_ZipMethodMustUseOnNSFastEnumerationOf
         return EZS_SequenceWithType(EZSequence *, item).objectEnumerator;
     }];
 
-    
     NSObject *endMarker = NSObject.new;
     for (;;) {
         EZSequence *values = [sequences map:^id _Nonnull(EZSEnumerator * _Nonnull item) {

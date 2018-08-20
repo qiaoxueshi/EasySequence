@@ -29,7 +29,7 @@ static inline BOOL EZS_idConformsToProtocol(id object, Protocol *protocol) {
     return [[object class] conformsToProtocol:protocol];
 }
 
-#define EZS_idConformsTo(obj, pro) EZS_idConformsToProtocol(obj, @protocol(pro))
+#define EZS_idConformsTo(obj, pro)   EZS_idConformsToProtocol(obj, @protocol(pro))
 
 #define EZS_THROW(NAME, REASON, INFO)                            \
 NSException *exception = [[NSException alloc] initWithName:NAME reason:REASON userInfo:INFO]; @throw exception;

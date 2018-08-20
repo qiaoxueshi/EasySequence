@@ -19,10 +19,8 @@
 #import <EasySequence/EZSOrderedSet.h>
 #import <EasySequence/EZSWeakOrderedSet.h>
 #import <EasySequence/EZSQueue.h>
-
 // UserfulBlocks
 #import <EasySequence/EZSUsefulBlocks.h>
-
 #import <EasySequence/EZSTransfer.h>
 // Enumerators
 #import <EasySequence/EZSEnumerator.h>
@@ -31,11 +29,9 @@
 #import <EasySequence/NSObject+EZSequence.h>
 #import <EasySequence/NSSet+EZSTransfer.h>
 #import <EasySequence/NSOrderedSet+EZSTransfer.h>
-
 // Utils
 #import <EasySequence/EZSWeakReference.h>
 #import <EasySequence/NSObject+EZSDeallocBell.h>
 
 FOUNDATION_EXPORT double EasySequenceVersionNumber;
 FOUNDATION_EXPORT const unsigned char EasySequenceVersionString[];
-

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface EZSequence<T> : NSObject <NSFastEnumeration>
 
 /**
- Initializes and returns a newly allocated sequence object with the specified object implented the `NSFastEnumeration` protocol.
+ Initializes and returns a newly allocated sequence object with the specified object implemented the `NSFastEnumeration` protocol.
 
  @param originSequence    An object that implements the `NSFastEnumeration` protocol
  @return                  An initialized EZSequence object
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithOriginSequence:(id<NSFastEnumeration>)originSequence NS_DESIGNATED_INITIALIZER;
 
 /**
- Converts EZSequence to the specified object implented the `EZSTransfer` protocol.
+ Converts EZSequence to the specified object implemented the `EZSTransfer` protocol.
   
  @param clazz    An object that implements the `EZSTransfer` protocol
  @return         An initialized EZSequence object

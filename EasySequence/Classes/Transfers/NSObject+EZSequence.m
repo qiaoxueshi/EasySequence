@@ -12,7 +12,7 @@
 @implementation NSObject (EZSequence)
 
 - (EZSequence *)EZS_asSequence {
-    NSAssert(EZS_idConformsTo(self, NSFastEnumeration), @"%@'s class not conform protocol NSFastEnumeration", self);
+    NSAssert(EZS_idConformsTo(self, NSFastEnumeration), @"%@'s class not conform to protocol NSFastEnumeration", self);
     // TODO:THROW_EXCEPTION
     return EZS_Sequence((id<NSFastEnumeration>)self);
 }

@@ -12,12 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EZSArray<__covariant T> : NSObject <NSFastEnumeration, NSCopying, EZSTransfer>
 
-// The number of objects in the array.
+/**
+ The number of objects in the array.
+ */
 @property (readonly) NSUInteger count;
 
 - (instancetype)initWithNSArray:(NSArray<T> *)array NS_DESIGNATED_INITIALIZER;
 
-// Returns the object located at the specified index.
+/**
+ Returns the object located at the specified index.
+ */ 
 - (nullable T)objectAtIndex:(NSUInteger)index;
 
 /**
@@ -35,10 +39,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)insertObject:(T)anObject atIndex:(NSUInteger)index;
 
-// Removes the last object of the array. 
+/**
+ Removes the last object of the array. 
+ */
 - (void)removeLastObject;
 
-// Removes the first object of the array.
+/**
+ Removes the first object of the array.
+ */
 - (void)removeFirstObject;
 
 /**
@@ -48,7 +56,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)removeObject:(T)anObject;
 
-// Removes all the objects of the array.
+/**
+ Removes all the objects of the array.
+ */
 - (void)removeAllObjects;
 
 /**
@@ -66,7 +76,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(T)anObject;
 
-// Converts to NSArray.
+/**
+ Converts to NSArray.
+ */
 - (nonnull NSArray<T> *)toArray;
 
 /**

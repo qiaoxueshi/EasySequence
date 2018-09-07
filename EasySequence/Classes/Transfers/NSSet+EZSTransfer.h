@@ -7,7 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import <EasySequence/EZSTransfer.h>
-
+/**
+ Object can be converted between NSSet and EZSequence.
+ */
 @interface NSSet (EZSTransfer) <EZSTransfer>
 
 @end

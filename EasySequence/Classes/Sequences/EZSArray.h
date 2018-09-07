@@ -12,12 +12,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EZSArray<__covariant T> : NSObject <NSFastEnumeration, NSCopying, EZSTransfer>
 
-// The number of objects in the array.
+/**
+ The number of objects in the array.
+ */
 @property (readonly) NSUInteger count;
 
 - (instancetype)initWithNSArray:(NSArray<T> *)array NS_DESIGNATED_INITIALIZER;
 
-// Returns the object located at the specified index.
+/**
+ Returns the object located at the specified index.
+ */ 
 - (nullable T)objectAtIndex:(NSUInteger)index;
 
 /**
@@ -34,12 +38,31 @@ NS_ASSUME_NONNULL_BEGIN
  @param index       The index in the array at which to insert `anObject`. This value must not be greater than the count of elements in the array
  */
 - (void)insertObject:(T)anObject atIndex:(NSUInteger)index;
-- (void)removeLastObject;
-- (void)removeFirstObject;
-- (void)removeObject:(T)anObject;
-- (void)removeAllObjects;
+
 /**
- Removes the object at index.
+ Removes the last object of the array. 
+ */
+- (void)removeLastObject;
+
+/**
+ Removes the first object of the array.
+ */
+- (void)removeFirstObject;
+
+/**
+ Removes the specified object.
+
+ @param anObject The object to remove from the array. This value must not be 'nil'
+ */
+- (void)removeObject:(T)anObject;
+
+/**
+ Removes all the objects of the array.
+ */
+- (void)removeAllObjects;
+
+/**
+ Removes the object at the specified index.
 
  @param index    The index from which to remove the object in the array. The value must not exceed the bounds of the array
  */
@@ -49,10 +72,13 @@ NS_ASSUME_NONNULL_BEGIN
  Replaces the object at `index` with `anObject`.
 
  @param index       The index of the object to be replaced. This value must not exceed the bounds of the array.
- @param anObject    The object with which to replace the object at index index in the array. This value must not be nil.
+ @param anObject    The object with which to replace the object at the index in the array. This value must not be nil.
  */
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(T)anObject;
 
+/**
+ Converts to NSArray.
+ */
 - (nonnull NSArray<T> *)toArray;
 
 /**

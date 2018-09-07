@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface EZSEnumerator : NSEnumerator
 
 /**
- Initializes and returns a newly allocated enumerator object with the specified object implented the `NSFastEnumeration` protocol.
+ Initializes and returns a newly allocated enumerator object with the specified object implemented the `NSFastEnumeration` protocol.
 
  @param fastEnumerator An object that implements the `NSFastEnumeration` protocol
  @return An initialized EZSEnumerator object

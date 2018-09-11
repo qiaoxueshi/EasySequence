@@ -45,6 +45,18 @@
     return [_array copy];
 }
 
+#pragma mark - query methods
+
+- (BOOL)containsObject:(id)anObject {
+    EZS_SCOPELOCK(_arrayLock);
+    return [_array containsObject:anObject];
+}
+
+- (NSUInteger)indexOfObject:(id)anObject {
+    EZS_SCOPELOCK(_arrayLock);
+    return [_array indexOfObject:anObject];
+}
+
 #pragma mark -  get methods
 
 - (nullable id)objectAtIndex:(NSUInteger)index {

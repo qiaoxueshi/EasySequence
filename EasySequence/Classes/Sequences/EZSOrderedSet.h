@@ -21,6 +21,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithNSOrderedSet:(NSOrderedSet<T> *)set NS_DESIGNATED_INITIALIZER;
 
 /**
+ Returns a Boolean value that indicates whether a given object is present in the array.
+ */
+- (BOOL)containsObject:(T)anObject;
+
+/**
  Returns the object located at the specified index.
  */
 - (T)objectAtIndex:(NSUInteger)index;

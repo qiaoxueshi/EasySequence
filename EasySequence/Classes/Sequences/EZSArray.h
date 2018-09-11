@@ -20,6 +20,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithNSArray:(NSArray<T> *)array NS_DESIGNATED_INITIALIZER;
 
 /**
+ Returns a Boolean value that indicates whether a given object is present in the array.
+ */
+- (BOOL)containsObject:(T)anObject;
+
+/**
+ Returns the lowest index whose corresponding array value is equal to a given object
+ */
+- (NSUInteger)indexOfObject:(T)anObject;
+
+/**
  Returns the object located at the specified index.
  */ 
 - (nullable T)objectAtIndex:(NSUInteger)index;

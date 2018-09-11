@@ -48,6 +48,13 @@
     return _orderedSet.count;
 }
 
+#pragma mark - query methods
+
+- (BOOL)containsObject:(id)anObject {
+    EZS_SCOPELOCK(_orderedSetLock);
+    return [_orderedSet containsObject:anObject];
+}
+
 #pragma mark -  get methods
 
 - (id)objectAtIndex:(NSUInteger)index {

@@ -46,6 +46,32 @@ describe(@"EZSArray", ^{
         });
     });
     
+    context(@"query", ^{
+        it(@"can check whether an object exists in array", ^{
+            NSObject *obj1 = [NSObject new];
+            NSObject *obj2 = [NSObject new];
+            NSObject *obj3 = [NSObject new];
+            
+            NSArray *array = @[obj1, obj2];
+            EZSArray *arr = [[EZSArray alloc] initWithNSArray:array];
+
+            expect([arr containsObject:obj1]).to(equal(YES));
+            expect([arr containsObject:obj3]).to(equal(NO));
+        });
+        
+        it(@"can get the position of an object", ^{
+            NSObject *obj1 = [NSObject new];
+            NSObject *obj2 = [NSObject new];
+            NSObject *obj3 = [NSObject new];
+            
+            NSArray *array = @[obj1, obj2];
+            EZSArray *arr = [[EZSArray alloc] initWithNSArray:array];
+
+            expect([arr indexOfObject:obj1]).to(equal(0));
+            expect([arr indexOfObject:obj3]).to(equal(NSNotFound));
+        });
+    });
+    
     context(@"modify", ^{
         it(@"can get an object at index", ^{
             NSArray *array = @[@"1", @"2", @"3", @"4"];

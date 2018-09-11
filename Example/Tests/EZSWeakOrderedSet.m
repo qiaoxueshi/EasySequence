@@ -78,6 +78,19 @@ describe(@"EZSWeakOrderedSet", ^{
         });
     });
     
+    context(@"query", ^{
+        it(@"can check whether an object exists in set", ^{
+            NSObject *obj1 = [NSObject new];
+            NSObject *obj2 = [NSObject new];
+            NSObject *obj3 = [NSObject new];
+            
+            NSArray *array = @[obj1, obj2];
+            EZSWeakOrderedSet *set = [[EZSWeakOrderedSet alloc] initWithNSArray:array];
+            expect([set containsObject:obj1]).to(equal(YES));
+            expect([set containsObject:obj3]).to(equal(NO));
+        });
+    });
+        
     context(@"enumerating", ^{
         it(@"can enumerate using fast enumeration.", ^{
             NSMutableArray *arr = [NSMutableArray array];

@@ -41,6 +41,13 @@
     }];
 }
 
+#pragma mark - query methods
+
+- (BOOL)containsObject:(id)anObject {
+    EZSWeakReference *obj = [self weakReference:anObject];
+    return [super containsObject:obj];
+}
+
 #pragma mark -  get methods
 
 - (id)objectAtIndex:(NSUInteger)index {

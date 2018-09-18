@@ -8,7 +8,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/EasySequence.svg?style=flat)](http://cocoapods.org/pods/EasySequence)
 [![codecov](https://codecov.io/gh/meituan/EasySequence/branch/master/graph/badge.svg)](https://codecov.io/gh/meituan/EasySequence)
 
-EasySequence is a powerful fundamental library to process sequcence type, such as array, set, dictionary. All type object which conforms to NSFastEnumeration protocol can be initialzed to an EZSequence instance, then you can operation with them. Finally, you can transfer them back to the original type.
+EasySequence is a powerful fundamental library to process sequence type, such as array, set, dictionary. Each type of object which conforms to NSFastEnumeration protocol can be initialzed to an EZSequence instance, then you can operate with it. Finally, you can transfer it back to the original type.
 
 ## Requirements
 
@@ -57,7 +57,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ### Transfer
 
-- An object which conforms to `EZSTransfer` protocol can get an instance which transfer from `EZSequence`.
+- An object which conforms to `EZSTransfer` protocol can get an instance which transfer from `EZSequence`.
 
 ### Thread-Safety Type
 
@@ -174,7 +174,7 @@ For more examples and help, see also our unit test and API comments.
 
 ### Transfer Protocol
 
-An object which conforms to `EZSTransfer` protocol can get an instance which transfer from `EZSequence`.
+An object which conforms to `EZSTransfer` protocol can get an instance which transfer from `EZSequence`.
 
 ```objective-c
 
